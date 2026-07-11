@@ -11,13 +11,13 @@ html {
 }
 
 body {
-  @apply min-h-screen bg-slate-50 text-slate-900 dark:bg-[#18181b] dark:text-slate-50;
+  @apply min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0f1114] dark:text-slate-50;
   font-family: var(--font-inter), sans-serif;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 ::selection {
-  @apply bg-zinc-200 text-zinc-900;
+  @apply bg-emerald-200 text-emerald-950;
 }
 
 .table-container {
@@ -62,5 +62,5 @@ body {
 }
 
 .progress-bar-fill {
-  @apply h-full bg-zinc-600 transition-all duration-300;
+  @apply h-full bg-emerald-500 transition-all duration-300;
 }

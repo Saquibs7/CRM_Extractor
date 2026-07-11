@@ -70,7 +70,7 @@ export function DataTable({ headers, data }: DataTableProps) {
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Search records"
-            className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 outline-none transition focus:border-blue-400 dark:border-[#2a2d33] dark:bg-[#18181b] dark:text-slate-200"
+            className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 outline-none transition focus:border-emerald-400 dark:border-[#2a2d33] dark:bg-[#18181b] dark:text-slate-200"
           />
         </div>
 
@@ -79,7 +79,7 @@ export function DataTable({ headers, data }: DataTableProps) {
             onClick={() => setShowOnlyPopulated((value) => !value)}
             className={`inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition ${
               showOnlyPopulated
-                ? "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300"
+                ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-300"
                 : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:border-[#2a2d33] dark:bg-[#18181b] dark:text-slate-300 dark:hover:bg-[#23262b]"
             }`}
           >

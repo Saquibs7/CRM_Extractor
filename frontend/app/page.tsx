@@ -27,7 +27,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F7FB_100%)] text-slate-900 dark:bg-[linear-gradient(180deg,#111827_0%,#1f2937_100%)] dark:text-slate-100">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#F8FAFC_0%,#F4F7FB_100%)] text-slate-900 dark:bg-[linear-gradient(180deg,#0f1114_0%,#171b20_100%)] dark:text-slate-100">
       <Header onRestart={handleRestart} currentStep={currentStep} />
 
       <main className="mx-auto flex max-w-7xl flex-col px-4 py-8 sm:px-6 lg:px-8 lg:py-10">

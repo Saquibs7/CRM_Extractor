@@ -80,8 +80,8 @@ export function FileUploader({ onComplete }: FileUploaderProps) {
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-8">
       <div className="max-w-3xl">
-        <p className="mb-3 inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-600 shadow-sm dark:border-[#2a2d33] dark:bg-[#18181b] dark:text-slate-300">
-          <FileSpreadsheet className="mr-2 h-4 w-4 text-zinc-600" />
+        <p className="mb-3 inline-flex items-center rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-300 shadow-sm">
+          <FileSpreadsheet className="mr-2 h-4 w-4 text-emerald-400" />
           Import Contacts
         </p>
         <h2 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
@@ -98,19 +98,19 @@ export function FileUploader({ onComplete }: FileUploaderProps) {
             {...getRootProps()}
             className={`cursor-pointer rounded-2xl border border-dashed p-8 text-center transition-all duration-200 sm:p-10 ${
               isDragActive
-                ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30"
-                : "border-slate-200 bg-slate-50/70 hover:border-blue-300 hover:bg-white dark:border-[#2a2d33] dark:bg-[#121417]/70 dark:hover:border-zinc-500 dark:hover:bg-[#1f2937]"
+                ? "border-emerald-500 bg-emerald-500/10"
+                : "border-slate-200 bg-slate-50/70 hover:border-emerald-400 hover:bg-white dark:border-[#2a2d33] dark:bg-[#121417]/70 dark:hover:border-emerald-400/40 dark:hover:bg-[#1b1e23]"
             }`}
           >
             <input {...getInputProps()} />
 
-            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-100 text-zinc-600">
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-500/10 text-emerald-400">
               <FileSpreadsheet className="h-7 w-7" />
             </div>
 
             {isDragActive ? (
               <>
-                <h3 className="text-xl font-semibold text-zinc-600">Drop your CSV here</h3>
+                <h3 className="text-xl font-semibold text-emerald-400">Drop your CSV here</h3>
                 <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Release to upload the file.</p>
               </>
             ) : (
@@ -121,7 +121,7 @@ export function FileUploader({ onComplete }: FileUploaderProps) {
                 </p>
                 <button
                   type="button"
-                  className="mt-6 inline-flex items-center rounded-lg bg-zinc-800 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-700"
+                  className="mt-6 inline-flex items-center rounded-lg bg-emerald-500 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-emerald-400"
                 >
                   Browse files
                   <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -146,7 +146,7 @@ export function FileUploader({ onComplete }: FileUploaderProps) {
               <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Recent Imports</p>
               <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-white">No uploads yet</h3>
             </div>
-            <div className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-500 dark:border-[#2a2d33] dark:bg-[#121417] dark:text-slate-400">
+            <div className="rounded-full border border-amber-400/20 bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-400">
               Ready
             </div>
           </div>
@@ -157,7 +157,7 @@ export function FileUploader({ onComplete }: FileUploaderProps) {
                   <p className="text-sm font-medium text-slate-700 dark:text-slate-300">{item}</p>
                   <p className="text-xs text-slate-500 dark:text-slate-400">Example format {index + 1}</p>
                 </div>
-                <div className="h-2.5 w-2.5 rounded-full bg-zinc-400" />
+                <div className={`h-2.5 w-2.5 rounded-full ${index === 0 ? "bg-emerald-500" : index === 1 ? "bg-amber-500" : "bg-rose-500"}`} />
               </div>
             ))}
           </div>
@@ -169,7 +169,7 @@ export function FileUploader({ onComplete }: FileUploaderProps) {
           const Icon = feature.icon;
           return (
             <div key={feature.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-[#2a2d33] dark:bg-[#18181b]">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-zinc-600 dark:border-[#2a2d33] dark:bg-[#121417]">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-500/10 text-emerald-400 dark:border-[#2a2d33] dark:bg-[#121417]">
                 <Icon className="h-5 w-5" />
               </div>
               <h4 className="text-base font-semibold text-slate-900 dark:text-white">{feature.title}</h4>

@@ -23,7 +23,7 @@ export function Header({ onRestart, currentStep }: HeaderProps) {
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl dark:border-[#2a2d33] dark:bg-[#121417]/90">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200 bg-zinc-100 text-zinc-600 shadow-sm dark:border-zinc-700/70 dark:bg-zinc-900/70 dark:text-zinc-300">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-500/10 text-emerald-400 shadow-sm">
             <DatabaseZap className="h-5 w-5" />
           </div>
           <div>
@@ -31,7 +31,7 @@ export function Header({ onRestart, currentStep }: HeaderProps) {
               <h1 className="text-base font-semibold tracking-tight text-slate-900 dark:text-white">
                 CRM Extractor
               </h1>
-              <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-500 dark:border-[#2a2d33] dark:bg-[#18181b] dark:text-slate-400">
+              <span className="rounded-full border border-amber-400/20 bg-amber-500/10 px-2 py-0.5 text-[11px] font-medium text-amber-400">
                 Beta
               </span>
             </div>

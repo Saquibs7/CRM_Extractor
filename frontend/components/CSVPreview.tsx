@@ -34,8 +34,8 @@ export function CSVPreview({ onConfirm, onBack }: CSVPreviewProps) {
               The import will use your current CSV layout and map the columns into CRM-ready fields.
             </p>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-700">
-            <Sparkles className="h-4 w-4" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1.5 text-sm font-medium text-emerald-300">
+            <Sparkles className="h-4 w-4 text-emerald-400" />
             AI mapping ready
           </div>
         </div>
@@ -57,7 +57,7 @@ export function CSVPreview({ onConfirm, onBack }: CSVPreviewProps) {
 
         <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-[#2a2d33] dark:bg-[#121417]">
           <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-            <FileCheck2 className="h-4 w-4 text-zinc-600" />
+            <FileCheck2 className="h-4 w-4 text-emerald-400" />
             Previewing the first rows. Confirm the import when you are ready to process the file.
           </div>
         </div>
@@ -76,7 +76,7 @@ export function CSVPreview({ onConfirm, onBack }: CSVPreviewProps) {
         </button>
         <button
           onClick={onConfirm}
-          className="rounded-lg bg-zinc-800 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-700"
+          className="rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-emerald-400"
         >
           Confirm & Process
         </button>
