@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: crm-backend
+    repo: https://github.com/yourusername/CRM_Extractor
+    branch: main
+    buildCommand: "npm run build"
+    startCommand: "npm start"
+    envs:
+      - key: GOOGLE_API_KEY
+        scope: shared
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+
+  - type: mongo
+    name: mongodb
+    version: 7
+    
+  - type: web
+    name: crm-frontend
+    repo: https://github.com/yourusername/CRM_Extractor
+    branch: main
+    buildCommand: "npm run build"
+    startCommand: "npm start"
+    root: frontend
+    envs:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://crm-backend.up.railway.app

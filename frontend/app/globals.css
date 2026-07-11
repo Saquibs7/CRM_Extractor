@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply box-border;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply min-h-screen bg-slate-50 text-slate-900 dark:bg-[#18181b] dark:text-slate-50;
+  font-family: var(--font-inter), sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  @apply bg-zinc-200 text-zinc-900;
+}
+
+.table-container {
+  @apply overflow-auto rounded-xl border border-slate-200 bg-white;
+}
+
+.table-sticky {
+  @apply sticky top-0 z-10 bg-white;
+}
+
+.table-container::-webkit-scrollbar {
+  @apply h-2 w-2;
+}
+
+.table-container::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-slate-300;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.progress-bar {
+  @apply h-1 overflow-hidden rounded-full bg-slate-200;
+}
+
+.progress-bar-fill {
+  @apply h-full bg-zinc-600 transition-all duration-300;
+}

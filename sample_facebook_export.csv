@@ -1,0 +1,11 @@
+first_name,last_name,email_address,phone_number,business_name,city_name
+John,Doe,john.doe@example.com,9876543210,GrowEasy,Mumbai
+Sarah,Johnson,sarah.johnson@example.com,9876543211,Tech Solutions,Bangalore
+Rajesh,Patel,rajesh.patel@example.com,9876543212,Startup Inc,Delhi
+Priya,Singh,priya.singh@example.com,9876543213,Enterprise Corp,Pune
+Amit,Kumar,amit.kumar@example.com,9876543214,Digital Agency,Chennai
+Neha,Sharma,neha.sharma@example.com,9876543215,Marketing Hub,Hyderabad
+Vikram,Singh,vikram.singh@example.com,9876543216,Sales Force,Pune
+Anaya,Gupta,anaya.gupta@example.com,9876543217,Brand Studio,Delhi
+Ravi,Reddy,ravi.reddy@example.com,,Creative Labs,Bangalore
+Zara,Khan,zara.khan@example.com,9876543219,Media Group,Mumbai
