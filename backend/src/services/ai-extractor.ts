@@ -10,7 +10,7 @@ import {
 const genAI = new GoogleGenAI({ apiKey: config.googleApiKey });
 
 export interface ExtractionBatch {
-  records: Record<string, string>[];
+  records: Record<string, unknown>[];
   batchId: string;
 }
 
@@ -136,13 +136,19 @@ export async function extractWithRetry(
   return lastError;
 }
 
-function formatCSVForPrompt(records: Record<string, string>[]): string {
+function formatCSVForPrompt(records: Record<string, unknown>[]): string {
   if (records.length === 0) return "";
 
   const headers = Object.keys(records[0]);
   const headerLine = headers.join(",");
   const dataLines = records.map((record) =>
-    headers.map((h) => `"${(record[h] || "").replace(/"/g, '""')}"`).join(",")
+    headers
+      .map((h) => {
+        const value = record[h] ?? "";
+        const normalized = typeof value === "string" ? value : String(value);
+        return `"${normalized.replace(/"/g, '""')}"`;
+      })
+      .join(",")
   );
 
   return [headerLine, ...dataLines].join("\n");
