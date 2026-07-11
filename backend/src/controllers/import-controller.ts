@@ -41,6 +41,53 @@ export async function importCSV(req: Request, res: Response) {
     const errors = [];
     let totalSkipped = 0;
 
+    // Helper: try to detect quota/exhausted errors and extract retry seconds
+    const extractQuotaInfo = (err: any): { isQuota: boolean; retryAfter?: number; raw?: any } => {
+      try {
+        const bodyErr = err?.response?.data?.error || err?.error || err;
+
+        // If Google-style error object
+        if (bodyErr && (bodyErr.status === "RESOURCE_EXHAUSTED" || bodyErr.code === 429 || /quota/i.test(bodyErr.message || ""))) {
+          // look for RetryInfo in details
+          const details = bodyErr.details || [];
+          const retryDetail = details.find((d: any) => d?.["@type"]?.includes("RetryInfo"));
+          let retrySeconds: number | undefined;
+
+          if (retryDetail) {
+            const rd = retryDetail.retryDelay || retryDetail.retryDelay?.seconds || retryDetail.retryDelay?.nanos;
+            if (typeof rd === "string") {
+              const m = rd.match(/(\d+(?:\.\d+)?)/);
+              if (m) retrySeconds = Math.ceil(Number(m[1]));
+            } else if (typeof rd === "number") {
+              retrySeconds = Math.ceil(rd);
+            } else if (retryDetail.retryDelay && typeof retryDetail.retryDelay.seconds === "number") {
+              retrySeconds = Math.ceil(retryDetail.retryDelay.seconds);
+            }
+          }
+
+          // fallback: parse message text like 'Please retry in 44.32100283s.'
+          if (!retrySeconds) {
+            const msg = String(bodyErr.message || err.message || "");
+            const m = msg.match(/retry (?:in|after) (\d+(?:\.\d+)?)s/i);
+            if (m) retrySeconds = Math.ceil(Number(m[1]));
+          }
+
+          return { isQuota: true, retryAfter: retrySeconds, raw: bodyErr };
+        }
+
+        // Top-level code/message checks
+        if (err?.code === 429 || /RESOURCE_EXHAUSTED|quota/i.test(String(err?.message || ""))) {
+          const m = String(err?.message || "").match(/retry (?:in|after) (\d+(?:\.\d+)?)s/i);
+          const retry = m ? Math.ceil(Number(m[1])) : undefined;
+          return { isQuota: true, retryAfter: retry, raw: err };
+        }
+      } catch (parseErr) {
+        // ignore parse errors
+      }
+
+      return { isQuota: false };
+    };
+
     for (let i = 0; i < batches.length; i++) {
       try {
         const batch: ExtractionBatch = {
@@ -57,6 +104,22 @@ export async function importCSV(req: Request, res: Response) {
           errors.push(`Batch ${i} failed: ${result.errors.join(", ")}`);
         }
       } catch (error) {
+        // If this is a quota error from the remote AI service, return a clear structured response
+        const quota = extractQuotaInfo(error);
+        if (quota.isQuota) {
+          const retrySeconds = quota.retryAfter ?? 60;
+          console.warn(`Quota exceeded on batch ${i}, retry after ${retrySeconds}s`);
+          return res
+            .status(429)
+            .setHeader("Retry-After", String(retrySeconds))
+            .json({
+              success: false,
+              error: "Quota exceeded",
+              message: `The AI service quota was exceeded. Please retry after ${retrySeconds} seconds.`,
+              retryAfter: retrySeconds,
+            });
+        }
+
         const errorMsg = error instanceof Error ? error.message : String(error);
         errors.push(`Batch ${i} error: ${errorMsg}`);
       }

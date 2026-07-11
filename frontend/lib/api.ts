@@ -30,7 +30,9 @@ export const importCsv = async (payload: ImportPayload): Promise<ImportResponse>
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data?.error || error.message || 'Import failed');
+      // Prefer a friendly message provided by the backend if available
+      const serverMessage = error.response?.data?.message || error.response?.data?.error;
+      throw new Error(serverMessage || error.message || 'Import failed');
     }
     throw error;
   }
