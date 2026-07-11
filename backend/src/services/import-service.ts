@@ -35,11 +35,11 @@ export async function getImportHistory(): Promise<ImportHistory[]> {
   return importHistoryStore;
 }
 
-export function processCSVRecords(
-  records: Record<string, string>[],
+export function processCSVRecords<T>(
+  records: T[],
   batchSize: number = 10
-): Record<string, string>[][] {
-  const batches: Record<string, string>[][] = [];
+): T[][] {
+  const batches: T[][] = [];
 
   for (let i = 0; i < records.length; i += batchSize) {
     batches.push(records.slice(i, i + batchSize));
